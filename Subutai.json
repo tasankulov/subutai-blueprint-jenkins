@@ -11,7 +11,7 @@
         "port-mapping": [{
             "protocol": "https",
             "domain": "${domainName}",
-            "internal-port": "80",
+            "internal-port": "8080",
             "external-port": "443"
         }]
     }],
@@ -22,14 +22,9 @@
         "source-url": "https://github.com/tasankulov/subutai-blueprint-jenkins/archive/master.zip",
         "ansible-playbook": "main.yml",
         "extra-vars": [{
-                "key": "domain_name",
-                "value": "${domainName}"
-            },
-            {
-                "key": "admin_user_pass",
-                "value": "${adminPwd}"
-            }
-        ],
+            "key": "admin_user_pass",
+            "value": "${adminPwd}"
+        }],
         "groups": [{
             "name": "jenkins",
             "hostnames": [
@@ -51,7 +46,7 @@
             "validation": "[a-zA-Z0-9]+"
         },
         "adminPwd": {
-            "description": "Site administrator password",
+            "description": "Administrator password",
             "type": "string",
             "default": "JenkinsAdmin"
         },

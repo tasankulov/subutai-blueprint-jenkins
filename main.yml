@@ -16,7 +16,6 @@
         packages:
         - default-jre
         - ca-certificates
-        - nginx
 
     - name: Add an Apt signing key
       apt_key:
@@ -77,23 +76,13 @@
         user: admin
         password: "{{ admin_user_pass }}"
 
-    - name: Change Jenkins JAVA options
-      lineinfile: 
-        dest: /etc/default/jenkins
-        regexp: ^JENKINS_ARGS=
-        line: JENKINS_ARGS="--webroot=/var/cache/$NAME/war --httpPort=$HTTP_PORT --httpListenAddress=127.0.0.1"
+    # - name: Change Jenkins JAVA options
+    #   lineinfile: 
+    #     dest: /etc/default/jenkins
+    #     regexp: ^JENKINS_ARGS=
+    #     line: JENKINS_ARGS="--webroot=/var/cache/$NAME/war --httpPort=$HTTP_PORT --httpListenAddress=127.0.0.1"
 
     - name: Restart jenkins
       systemd: 
         name: jenkins.service
-        state: restarted
-
-    - name: Replace default.conf
-      template:
-        src: default.conf
-        dest: /etc/nginx/sites-available/default
-
-    - name: Restart nginx
-      systemd: 
-        name: nginx.service
         state: restarted
