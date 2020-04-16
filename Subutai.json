@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "Jenkins",
-    "version": "2.164.1",
+    "version": "2.164.3",
     "author": "https://github.com/tasankulov",
     "containers": [{
         "hostname": "${webContainerName}",

@@ -1,3 +1,4 @@
+# Ansible Playbook for Subutai Jenkins Blueprint
 ---
 
 - hosts: jenkins
@@ -28,11 +29,15 @@
         state: present
         filename: jenkins.list
 
-    - name: Install jenkins
-      apt: 
-        name: jenkins
-        state: present
-        update_cache: yes
+#    - name: Install jenkins
+#      apt: 
+#        name: jenkins
+#        state: present
+#        update_cache: yes
+
+    - name: Install a jenkins 2.164.3.deb package from the internet.
+      apt:
+        deb: https://pkg.jenkins.io/debian-stable/binary/jenkins_2.164.3_all.deb
 
     - name: Wait until the file "initialAdminPassword" is present before continuing
       wait_for:
